@@ -1,12 +1,14 @@
 package curso.springboot.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
 public class IndexController {
 
-	@RequestMapping(method = RequestMethod.GET,value = "index")
-	public String pagina() {
+	@GetMapping("index")
+	
+	public String inicial() {
 		return "index";
 	}
 }
