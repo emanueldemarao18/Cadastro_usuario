@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+
+<html lang="pt-br" xmlns:th="https://thymeleaf.org">
 
 <head>
 	<!--Imports para trabalhar com materialize css-->
@@ -28,7 +29,20 @@
 
 
 	</form>
-
+	
+	<table>
+		<th>ID</th>
+		<th>Nome</th>
+		<th>Sobrenome</th>
+		<th>Idade</th>
+		
+		<tr th:each="pessoa$:{pessoas}">
+			<td th:text="${pessoa.id}"></td>
+			<td th:text="${pessoa.nome}"></td>
+			<td th:text="${pessoa.sobrenome}"></td>
+			<td th:text="${pessoa.idade}"></td>
+		</tr>
+	</table>
 
 	<a href="/index">Página inicial</a>
 

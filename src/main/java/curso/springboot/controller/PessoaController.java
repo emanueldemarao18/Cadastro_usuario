@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import curso.spring.springboot.model.Pessoa;
 import curso.springboot.repository.PessoaRepository;
@@ -19,15 +18,29 @@ public class PessoaController {
 	private PessoaRepository pessoarepository;
 
 	@GetMapping("cadastros/cadastropessoa")
-
-	public String cadastros() {
+	public String cadastro() {
 		return "cadastros/cadastropessoa";
 	}
 
-	@PostMapping("salvar")
+	@PostMapping("salvarpessoa")
 
-	public String cadastrar(Pessoa pessoa) {
+	public String salvar(Pessoa pessoa) {
+
 		pessoarepository.save(pessoa);
-		return "cadastros/cadastropessoa";// Retornar para cadastros/cadastropessoa
+		return "cadastros/cadastropessoa";
+
 	}
+	
+	@GetMapping("/listapessoa")
+	
+	public  ModelAndView pessoas() {
+		
+		ModelAndView tela = new ModelAndView("cadastros/cadastropessoa");
+		Iterable<Pessoa> pessoas = pessoarepository.findAll();
+		tela.addObject("pessoa", pessoas);
+		return tela;
+		
+	}
+	
+	
 }
